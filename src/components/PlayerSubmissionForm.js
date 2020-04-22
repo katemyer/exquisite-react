@@ -1,22 +1,139 @@
 import React, { useState } from 'react';
 import './PlayerSubmissionForm.css';
 
-const PlayerSubmissionForm = () => {
-  return (
-    <div className="PlayerSubmissionForm">
-      <h3>Player Submission Form for Player #{  }</h3>
+const PlayerSubmissionForm = (props) => {
 
-      <form className="PlayerSubmissionForm__form" >
+  // state
+  const [formFields, setFormFields] = useState({
+    adj1: "",
+    noun1: "",
+    adv: "",
+    verb: "",
+    adj2: "",
+    noun2: ""
+  });
+
+  // event handlers for each input
+  const onAdjectiveChange1 = event => {
+    console.log(`Adjective 1 Field updated ${event.target.value}`);
+    setFormFields({
+      ...formFields,
+      adj1: event.target.value,
+    });
+  };
+
+  const onNounChange1 = event => {
+    console.log(`Noun 1 Field updated ${event.target.value}`);
+    setFormFields({
+      ...formFields,
+      noun1: event.target.value,
+    });
+  };
+
+  const onAdverbChange = event => {
+    console.log(`Adverb Field updated ${event.target.value}`);
+    setFormFields({
+      ...formFields,
+      adverb: event.target.value,
+    });
+  };
+
+  const onVerbChange = event => {
+    console.log(`Verb Field updated ${event.target.value}`);
+    setFormFields({
+      ...formFields,
+      verb: event.target.value,
+    });
+  };
+
+  const onAdjectiveChange2 = event => {
+    console.log(`Adjective 2 Field updated ${event.target.value}`);
+    setFormFields({
+      ...formFields,
+      adj2: event.target.value,
+    });
+  };
+
+  const onNounChange2 = event => {
+    console.log(`Noun 2 Field updated ${event.target.value}`);
+    setFormFields({
+      ...formFields,
+      noun2: event.target.value,
+    });
+  };
+
+  //Submissions
+  const onFormSubmit = event => {
+    event.preventDefault(); 
+
+    //props.addStudentCallback(formFields);
+
+    //resets input fields
+    setFormFields({
+      adj1: "",
+      noun1: "",
+      adverb: "",
+      verb: "",
+      adj2: "",
+      noun2: ""
+    });
+  };
+
+  return (
+    <div className="PlayerSubmissionForm" >
+      <h3>Player Submission Form for Player #{ props.index }</h3>
+
+      <form className="PlayerSubmissionForm__form" onSubmit={onFormSubmit}>
 
         <div className="PlayerSubmissionForm__poem-inputs">
 
-          {
-            // Put your form inputs here... We've put in one below as an example
-          }
-          <input
-            placeholder="hm..."
-            type="text" />
+        <label htmlFor="adj1">Adjective 1:</label>
+        <input
+          name="Adjective1"
+          onChange={onAdjectiveChange1}
+          value={formFields.adj1}
+          type="text"
+        />
 
+        <label htmlFor="noun1">Noun 1:</label>
+        <input
+          name="Noun1"
+          onChange={onNounChange1}
+          value={formFields.noun1}
+          type="text"
+        />
+
+        <label htmlFor="adverb">Adverb:</label>
+        <input
+          name="Adverb"
+          onChange={onAdverbChange}
+          value={formFields.adverb}
+          type="text"
+        />
+
+        <label htmlFor="verb">Verb:</label>
+        <input
+          name="Verb"
+          onChange={onVerbChange}
+          value={formFields.verb}
+          type="text"
+        />
+
+        <label htmlFor="adj2">Adjective 2:</label>
+        <input
+          name="Adjective2"
+          onChange={onAdjectiveChange2}
+          value={formFields.adj2}
+          type="text"
+        />
+
+        <label htmlFor="noun2">Noun 2:</label>
+        <input
+          name="Noun2"
+          onChange={onNounChange2}
+          value={formFields.noun2}
+          type="text"
+        />
         </div>
 
         <div className="PlayerSubmissionForm__submit">
