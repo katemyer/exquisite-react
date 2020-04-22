@@ -27,14 +27,17 @@ const Game = () => {
 
       <RecentSubmission />
 
-      <PlayerSubmissionForm />
-
+      <PlayerSubmissionForm 
+        //{this.state.submissions.length + 1}
+        index= "1"
+        //sendSubmission={ this.addPlayerSubmission }
+      />
+      
       <FinalPoem />
 
     </div>
   );
 }
-
 
 const FIELDS = [
   "The",
