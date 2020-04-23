@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './PlayerSubmissionForm.css';
 
 const PlayerSubmissionForm = (props) => {
+  //PROPS
 
-  // state
+  //STATES
+  // varname of state,function to update = initial state data structure
   const [formFields, setFormFields] = useState({
     adj1: "",
     noun1: "",
@@ -13,6 +15,7 @@ const PlayerSubmissionForm = (props) => {
     noun2: ""
   });
 
+  //CALLBACKS
   // event handlers for each input
   const onAdjectiveChange1 = event => {
     console.log(`Adjective 1 Field updated ${event.target.value}`);
@@ -30,11 +33,11 @@ const PlayerSubmissionForm = (props) => {
     });
   };
 
-  const onAdverbChange = event => {
-    console.log(`Adverb Field updated ${event.target.value}`);
+  const onAdvChange = event => {
+    console.log(`Adv Field updated ${event.target.value}`);
     setFormFields({
       ...formFields,
-      adverb: event.target.value,
+      adv: event.target.value,
     });
   };
 
@@ -63,26 +66,28 @@ const PlayerSubmissionForm = (props) => {
   };
 
   //Submissions
-  const onFormSubmit = event => {
+  const onFormSubmit = (event) => {
     event.preventDefault(); 
 
-    //props.addStudentCallback(formFields);
+    props.onAddPoem(formFields);
 
     //resets input fields
     setFormFields({
       adj1: "",
       noun1: "",
-      adverb: "",
+      adv: "",
       verb: "",
       adj2: "",
       noun2: ""
     });
   };
 
+  //HTML
+  //https://www.w3schools.com/tags/ref_eventattributes.asp - onChange is an event attribute specific to form
   return (
     <div className="PlayerSubmissionForm" >
       <h3>Player Submission Form for Player #{ props.index }</h3>
-
+                                          {/* prop specific to forms = attribute */}
       <form className="PlayerSubmissionForm__form" onSubmit={onFormSubmit}>
 
         <div className="PlayerSubmissionForm__poem-inputs">
@@ -103,11 +108,11 @@ const PlayerSubmissionForm = (props) => {
           type="text"
         />
 
-        <label htmlFor="adverb">Adverb:</label>
+        <label htmlFor="adv">Adverb:</label>
         <input
-          name="Adverb"
-          onChange={onAdverbChange}
-          value={formFields.adverb}
+          name="Adv"
+          onChange={onAdvChange}
+          value={formFields.adv}
           type="text"
         />
 

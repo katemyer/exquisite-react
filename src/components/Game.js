@@ -4,7 +4,11 @@ import PlayerSubmissionForm from './PlayerSubmissionForm';
 import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
-const Game = () => {
+const Game = (props ) => {
+  // PROPS
+
+
+  // Helper Functions/Variables
   const exampleFormat = FIELDS.map((field) => {
     if (field.key) {
       return field.placeholder;
@@ -13,6 +17,22 @@ const Game = () => {
     }
   }).join(" ");
 
+  //STATES
+  const [poemList, setPoemList] = useState([]);
+
+  //CALLBACKS
+  //create poem list here to pass down to finalpoem
+  const onAddPoem = (poem) => {
+    const newPoemList = [...poemList];
+
+    newPoemList.push(poem);
+    //console.log(newPoemList);
+
+    setPoemList(newPoemList);
+  }
+
+
+  // HTML: This is the html gets injected to  <Game />
   return (
     <div className="Game">
       <h2>Game</h2>
@@ -25,15 +45,28 @@ const Game = () => {
         { exampleFormat }
       </p>
 
-      <RecentSubmission />
-
+      <RecentSubmission 
+        // PROPS
+        //recentPoem={recentPoem}
+        recentPoem={poemList[poemList.length - 1]}
+        
+        
+      
+      />
+        
       <PlayerSubmissionForm 
+        // PROPS
         //{this.state.submissions.length + 1}
-        index= "1"
+        index= "1" 
         //sendSubmission={ this.addPlayerSubmission }
+        onAddPoem={onAddPoem}
       />
       
-      <FinalPoem />
+      <FinalPoem 
+        // PROPS
+        poemList={poemList}
+      
+      />
 
     </div>
   );
