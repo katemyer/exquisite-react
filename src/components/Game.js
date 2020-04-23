@@ -19,8 +19,18 @@ const Game = (props ) => {
 
   //STATES
   const [poemList, setPoemList] = useState([]);
+  //setting state, intial to false
+  const [showFinalPoem, setShowFinalPoem] = useState(false);
+  //callback for onclick
 
   //CALLBACKS
+  //wave3
+  const onFinalPoemButtonClick = event => {
+    //toggle showfinalpoem state boolean:https://www.geeksforgeeks.org/how-to-toggle-a-boolean-using-javascript/
+    setShowFinalPoem(!showFinalPoem)
+    console.log(showFinalPoem)
+  };
+  //wave1
   //create poem list here to pass down to finalpoem
   const onAddPoem = (poem) => {
     const newPoemList = [...poemList];
@@ -30,7 +40,6 @@ const Game = (props ) => {
 
     setPoemList(newPoemList);
   }
-
 
   // HTML: This is the html gets injected to  <Game />
   return (
@@ -44,28 +53,26 @@ const Game = (props ) => {
       <p className="Game__format-example">
         { exampleFormat }
       </p>
-
-      <RecentSubmission 
+      {/* https://www.pluralsight.com/guides/how-to-show-and-hide-reactjs-components */}
+      {!showFinalPoem && (<RecentSubmission 
         // PROPS
         //recentPoem={recentPoem}
-        recentPoem={poemList[poemList.length - 1]}
+        recentPoem={poemList[poemList.length - 1]}      
+      />)}
         
-        
-      
-      />
-        
-      <PlayerSubmissionForm 
+      {!showFinalPoem && (<PlayerSubmissionForm 
         // PROPS
         //{this.state.submissions.length + 1}
-        index= "1" 
+        index={poemList.length + 1}
         //sendSubmission={ this.addPlayerSubmission }
         onAddPoem={onAddPoem}
-      />
+      />)}
       
       <FinalPoem 
         // PROPS
         poemList={poemList}
-      
+        onFinalPoemButtonClick={onFinalPoemButtonClick}
+        showFinalPoem={showFinalPoem}
       />
 
     </div>

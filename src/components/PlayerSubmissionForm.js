@@ -82,6 +82,57 @@ const PlayerSubmissionForm = (props) => {
     });
   };
 
+  //function to check if adj1 in formfields has data
+  const hasAdjData1 = () => {
+    if (formFields.adj1.length > 0) {
+      //return true if there is data and false if there isn't
+      return true
+    } else {
+      return false
+    }
+  }
+  
+  const hasNounData1 = () => {
+    if (formFields.noun1.length > 0) {
+      //return true if there is data and false if there isn't
+      return true
+    } else {
+      return false
+    }
+  }
+  const hasAdvData = () => {
+    if (formFields.adv.length > 0) {
+      //return true if there is data and false if there isn't
+      return true
+    } else {
+      return false
+    }
+  }
+  const hasVerbData = () => {
+    if (formFields.verb.length > 0) {
+      //return true if there is data and false if there isn't
+      return true
+    } else {
+      return false
+    }
+  }
+  const hasAdjData2 = () => {
+    if (formFields.adj2.length > 0) {
+      //return true if there is data and false if there isn't
+      return true
+    } else {
+      return false
+    }
+  }
+  const hasNounData2 = () => {
+    if (formFields.noun2.length > 0) {
+      //return true if there is data and false if there isn't
+      return true
+    } else {
+      return false
+    }
+  }
+
   //HTML
   //https://www.w3schools.com/tags/ref_eventattributes.asp - onChange is an event attribute specific to form
   return (
@@ -98,6 +149,7 @@ const PlayerSubmissionForm = (props) => {
           onChange={onAdjectiveChange1}
           value={formFields.adj1}
           type="text"
+          className={hasAdjData1() ? "PlayerSubmissionFormt__input" : "PlayerSubmissionFormt__input--invalid"}
         />
 
         <label htmlFor="noun1">Noun 1:</label>
@@ -106,6 +158,7 @@ const PlayerSubmissionForm = (props) => {
           onChange={onNounChange1}
           value={formFields.noun1}
           type="text"
+          className={hasNounData1() ? "PlayerSubmissionFormt__input" : "PlayerSubmissionFormt__input--invalid"}
         />
 
         <label htmlFor="adv">Adverb:</label>
@@ -114,6 +167,7 @@ const PlayerSubmissionForm = (props) => {
           onChange={onAdvChange}
           value={formFields.adv}
           type="text"
+          className={hasAdvData() ? "PlayerSubmissionFormt__input" : "PlayerSubmissionFormt__input--invalid"}
         />
 
         <label htmlFor="verb">Verb:</label>
@@ -122,6 +176,7 @@ const PlayerSubmissionForm = (props) => {
           onChange={onVerbChange}
           value={formFields.verb}
           type="text"
+          className={hasVerbData() ? "PlayerSubmissionFormt__input" : "PlayerSubmissionFormt__input--invalid"}
         />
 
         <label htmlFor="adj2">Adjective 2:</label>
@@ -130,6 +185,7 @@ const PlayerSubmissionForm = (props) => {
           onChange={onAdjectiveChange2}
           value={formFields.adj2}
           type="text"
+          className={hasAdjData2() ? "PlayerSubmissionFormt__input" : "PlayerSubmissionFormt__input--invalid"}
         />
 
         <label htmlFor="noun2">Noun 2:</label>
@@ -138,6 +194,7 @@ const PlayerSubmissionForm = (props) => {
           onChange={onNounChange2}
           value={formFields.noun2}
           type="text"
+          className={hasNounData2() ? "PlayerSubmissionFormt__input" : "PlayerSubmissionFormt__input--invalid"}
         />
         </div>
 
